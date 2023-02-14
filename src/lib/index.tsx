@@ -1,3 +1,4 @@
+import "./index.css";
 import { SchedulerComponent } from "./SchedulerComponent";
 import { useStore } from "./store";
 import { Scheduler as SchedulerProps } from "./types";
