@@ -10,6 +10,20 @@ function App() {
   return (
     <Scheduler
       events={EVENTS}
+      day={null}
+      week={{
+        weekDays: [0, 1, 2, 3, 4, 5, 6],
+        weekStartOn: 1,
+        startHour: 0,
+        endHour: 23,
+        step: 15,
+      }}
+      month={{
+        weekDays: [0, 1, 2, 3, 4, 5, 6],
+        weekStartOn: 1,
+        startHour: 0,
+        endHour: 23,
+      }}
       // getRemoteEvents={async (query) => {
       //   console.log(query);
       //   return new Promise((res) => {
