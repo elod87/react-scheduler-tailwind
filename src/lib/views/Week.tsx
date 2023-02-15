@@ -215,8 +215,6 @@ const Week = () => {
                         startHour={startHour}
                         step={step}
                         direction={direction}
-                        isWeekView={true}
-                        onViewMore={handleGotoDay}
                       />
                     )}
                     <Cell
