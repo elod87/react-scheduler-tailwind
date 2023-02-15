@@ -1,6 +1,9 @@
 import { alpha, styled, Button } from "@mui/material";
 
 export const Wrapper = styled("div")<{ dialog: number }>(({ theme, dialog }) => ({
+  height: "100vh",
+  display: "flex",
+  flexDirection: "column",
   position: "relative",
   "& .rs__table_loading": {
     background: dialog ? "" : alpha(theme.palette.background.paper, 0.4),
@@ -25,11 +28,12 @@ export const Wrapper = styled("div")<{ dialog: number }>(({ theme, dialog }) => 
 
 export const Table = styled("div")<{ resource_count: number }>(({ resource_count }) => ({
   position: "relative",
+  flex: 1,
   display: "flex",
   flexDirection: resource_count > 1 ? "row" : "column",
   width: "100%",
   boxSizing: "content-box",
-  "& > div": {
+  "& > div:last-child": {
     flexShrink: 0,
     flexGrow: 1,
   },
@@ -91,6 +95,7 @@ export const TableGrid = styled("div")<{ days: number; sticky?: string; indent?:
 
           "&:before": {
             display: "block",
+            position: "absolute",
             content:
               "url(\"data:image/svg+xml,%3C%3Fxml version='1.0' standalone='no'%3F%3E%3C!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 20010904//EN' 'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'%3E%3Csvg version='1.0' xmlns='http://www.w3.org/2000/svg' width='28px' height='28px' viewBox='0 0 512.000000 512.000000' preserveAspectRatio='xMidYMid meet'%3E%3Cg transform='translate(0.000000,512.000000) scale(0.100000,-0.100000)'%0Afill='%239a9797' stroke='none'%3E%3Cpath d='M2405 4954 c-370 -37 -615 -103 -900 -244 -489 -241 -854 -606 -1095%0A-1095 -169 -341 -244 -667 -244 -1055 0 -388 75 -714 244 -1055 239 -485 606%0A-854 1085 -1090 168 -83 296 -132 441 -170 358 -93 709 -106 1064 -41 970 180%0A1736 946 1916 1915 65 353 53 686 -36 1042 -40 160 -88 287 -175 464 -236 479%0A-605 846 -1090 1085 -322 159 -636 236 -1002 244 -93 2 -186 2 -208 0z m485%0A-339 c602 -102 1121 -448 1439 -959 296 -475 385 -1064 246 -1619 -88 -348%0A-280 -682 -545 -947 -315 -315 -692 -508 -1145 -587 -141 -24 -509 -24 -650 0%0A-454 80 -833 273 -1145 587 -315 315 -508 693 -587 1145 -24 142 -24 510 0%0A650 79 449 270 825 577 1135 334 338 734 537 1215 605 130 18 462 13 595 -10z'/%3E%3Cpath d='M2284 3828 c-42 -20 -44 -39 -44 -503 l0 -445 -445 0 c-304 0 -452%0A-3 -468 -11 -43 -20 -47 -45 -47 -309 0 -264 4 -289 47 -309 16 -8 164 -11%0A468 -11 l445 0 0 -445 c0 -304 3 -452 11 -468 20 -43 45 -47 309 -47 264 0%0A289 4 309 47 8 16 11 164 11 468 l0 445 445 0 c304 0 452 3 468 11 43 20 47%0A45 47 309 0 264 -4 289 -47 309 -16 8 -164 11 -468 11 l-445 0 0 445 c0 304%0A-3 452 -11 468 -6 14 -22 30 -36 36 -31 14 -519 14 -549 -1z'/%3E%3C/g%3E%3C/svg%3E%0A\")",
             backgroundSize: "28px 28px",

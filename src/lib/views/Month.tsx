@@ -104,7 +104,7 @@ const Month = () => {
         const end = new Date(`${format(setHours(today, endHour), `yyyy/MM/dd ${hFormat}`)}`);
         const field = resourceFields.idField;
         return (
-          <span style={{ height: CELL_HEIGHT }} key={d.toString()} className="rs__cell">
+          <span /*style={{ height: CELL_HEIGHT }}*/ key={d.toString()} className="rs__cell">
             <Cell
               start={start}
               end={end}
@@ -161,7 +161,13 @@ const Month = () => {
     return (
       <>
         {/* Header Days */}
-        <TableGrid days={daysList.length} ref={headersRef} indent="0" sticky="1">
+        <TableGrid
+          days={daysList.length}
+          ref={headersRef}
+          indent="0"
+          sticky="1"
+          sx={{ flex: "none" }}
+        >
           {daysList.map((date, i) => (
             <Typography
               key={i}
