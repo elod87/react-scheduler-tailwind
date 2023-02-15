@@ -10,7 +10,12 @@ function App() {
   return (
     <Scheduler
       events={EVENTS}
-      day={null}
+      // day={null}
+      day={{
+        startHour: 0,
+        endHour: 23,
+        step: 15,
+      }}
       week={{
         weekDays: [0, 1, 2, 3, 4, 5, 6],
         weekStartOn: 1,

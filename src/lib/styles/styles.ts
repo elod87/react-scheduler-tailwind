@@ -179,3 +179,16 @@ export const TimeIndicatorBar = styled("div")(({ theme }) => ({
 export const ColorButton = styled(Button)(({ theme }) => ({
   color: "#4F46E5",
 }));
+
+export const ShowMoreButton = styled("div")<{ top: number }>(({ top }) => ({
+  position: "absolute",
+  top,
+  zIndex: 1,
+  left: "50%",
+  marginLeft: "10px",
+  fontSize: "12px",
+  cursor: "pointer",
+  "&:hover": {
+    textDecoration: "underline",
+  },
+}));

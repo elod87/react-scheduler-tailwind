@@ -57,6 +57,8 @@ const MonthEvents = ({
     return list.sort((a, b) => b.end.getTime() - a.end.getTime());
   }, [eachFirstDayInCalcRow, events, today, timeZone]);
 
+  let hasMoreWasAdded = false;
+
   return (
     <Fragment>
       {todayEvents.map((event, i) => {
@@ -102,39 +104,45 @@ const MonthEvents = ({
         }
         const topSpace = index * MULTI_DAY_EVENT_HEIGHT + MONTH_NUMBER_HEIGHT;
 
-        return index > LIMIT ? (
-          ""
-        ) : index === LIMIT ? (
-          <Typography
-            key={i}
-            width="100%"
-            className="rs__multi_day rs__hover__op"
-            style={{ top: topSpace, fontSize: 11 }}
-            onClick={(e) => {
-              e.stopPropagation();
-              onViewMore(event.start);
-            }}
-          >
-            {`${Math.abs(todayEvents.length - i)} ${translations.moreEvents}`}
-          </Typography>
-        ) : (
-          <div
-            key={`${event.event_id}_${i}`}
-            className="rs__multi_day"
-            style={{
-              top: topSpace,
-              width: `${100 * eventLength}%`,
-            }}
-          >
-            <EventItem
-              event={event}
-              showdate={false}
-              multiday={differenceInDaysOmitTime(event.start, event.end) > 0}
-              hasPrev={fromPrevWeek}
-              hasNext={toNextWeek}
-            />
-          </div>
-        );
+        if (index > LIMIT || hasMoreWasAdded) {
+          return "";
+        } else if (index === LIMIT) {
+          hasMoreWasAdded = true;
+
+          return (
+            <Typography
+              key={i}
+              width="100%"
+              className="rs__multi_day rs__hover__op"
+              style={{ top: topSpace, fontSize: 11 }}
+              onClick={(e) => {
+                e.stopPropagation();
+                onViewMore(event.start);
+              }}
+            >
+              {`${Math.abs(todayEvents.length - i)} ${translations.moreEvents}`}
+            </Typography>
+          );
+        } else {
+          return (
+            <div
+              key={`${event.event_id}_${i}`}
+              className="rs__multi_day"
+              style={{
+                top: topSpace,
+                width: `${100 * eventLength}%`,
+              }}
+            >
+              <EventItem
+                event={event}
+                showdate={false}
+                multiday={differenceInDaysOmitTime(event.start, event.end) > 0}
+                hasPrev={fromPrevWeek}
+                hasNext={toNextWeek}
+              />
+            </div>
+          );
+        }
       })}
     </Fragment>
   );

@@ -178,6 +178,7 @@ const Day = () => {
                       startHour={startHour}
                       step={step}
                       direction={direction}
+                      isWeekView={false}
                     />
                   )}
                   {/* Cell */}
