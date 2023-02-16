@@ -60,7 +60,20 @@ const MonthEvents = ({
 
   let hasMoreWasAdded = false;
 
-  return (
+  return todayEvents.length > 2 ? (
+    <div
+      className="rs__multi_day"
+      style={{
+        top: MONTH_NUMBER_HEIGHT,
+        width: "100%",
+        height: "50px",
+      }}
+    >
+      <div className="text-center rounded-lg bg-pink-50 p-2 text-xs cursor-pointer hover:bg-pink-100">
+        <p className="font-semibold text-pink-700">{`${todayEvents.length} events scheduled`}</p>
+      </div>
+    </div>
+  ) : (
     <Fragment>
       {todayEvents.map((event, i) => {
         const fromPrevWeek =
