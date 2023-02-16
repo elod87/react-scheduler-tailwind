@@ -23,6 +23,13 @@ const TodayEvents = ({
   direction,
 }: TodayEventsProps) => {
   const crossingIds: Array<number | string> = [];
+  todayEvents.sort((a, b) => {
+    const startDiff = a.start.getTime() - b.start.getTime();
+    if (startDiff === 0) {
+      return b.end.getTime() - a.end.getTime();
+    }
+    return startDiff;
+  });
 
   return (
     <Fragment>
