@@ -180,14 +180,14 @@ const Week = () => {
             <span
               key={i}
               className={`rs__cell rs__header ${isToday(date) ? "rs__today_cell" : ""}`}
-              style={{ height: headerHeight }}
+              // style={{ height: headerHeight }}
             >
               <TodayTypo
                 date={date}
                 onClick={!disableGoToDay ? handleGotoDay : undefined}
                 locale={locale}
               />
-              {renderMultiDayEvents(recousedEvents, date)}
+              {/* {renderMultiDayEvents(recousedEvents, date)} */}
             </span>
           ))}
         </TableGrid>

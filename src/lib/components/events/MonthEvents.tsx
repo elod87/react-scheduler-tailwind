@@ -35,14 +35,15 @@ const MonthEvents = ({
   onViewMore,
   cellHeight,
 }: MonthEventProps) => {
+  const singleDayEvents = events.filter((event) => !event.allDay);
   const LIMIT = Math.round((cellHeight - MONTH_NUMBER_HEIGHT) / MULTI_DAY_EVENT_HEIGHT - 1);
   const { translations, month, locale, timeZone } = useStore();
   const eachFirstDayInCalcRow = eachWeekStart.some((date) => isSameDay(date, today)) ? today : null;
 
   const todayEvents = useMemo(() => {
     const list: ProcessedEvent[] = [];
-    for (let i = 0; i < events.length; i++) {
-      const event = convertEventTimeZone(events[i], timeZone);
+    for (let i = 0; i < singleDayEvents.length; i++) {
+      const event = convertEventTimeZone(singleDayEvents[i], timeZone);
       if (
         (eachFirstDayInCalcRow &&
           isWithinInterval(eachFirstDayInCalcRow, {
@@ -55,7 +56,7 @@ const MonthEvents = ({
       }
     }
     return list.sort((a, b) => b.end.getTime() - a.end.getTime());
-  }, [eachFirstDayInCalcRow, events, today, timeZone]);
+  }, [eachFirstDayInCalcRow, singleDayEvents, today, timeZone]);
 
   let hasMoreWasAdded = false;
 
@@ -85,7 +86,7 @@ const MonthEvents = ({
           }
         }
 
-        const prevNextEvents = events.filter((e) => {
+        const prevNextEvents = singleDayEvents.filter((e) => {
           return (
             !eachFirstDayInCalcRow &&
             e.event_id !== event.event_id &&
@@ -117,7 +118,8 @@ const MonthEvents = ({
               style={{ top: topSpace, fontSize: 11 }}
               onClick={(e) => {
                 e.stopPropagation();
-                onViewMore(event.start);
+                // onViewMore(event.start);
+                window.alert(`${Math.abs(todayEvents.length - i)} more events`);
               }}
             >
               {`${Math.abs(todayEvents.length - i)} ${translations.moreEvents}`}

@@ -62,10 +62,10 @@ const TodayEvents = ({
             style={{
               height,
               top,
-              width: crossingEvents.length ? `${100 / (crossingEvents.length + 1)}%` : "95%", //Leave some space to click cell
+              width: crossingEvents.length ? `${95 / (crossingEvents.length + 1)}%` : "95%", //Leave some space to click cell
               [direction === "rtl" ? "right" : "left"]:
                 alreadyRendered.length > 0
-                  ? `calc(${(100 / (crossingEvents.length + 1)) * alreadyRendered.length}%)`
+                  ? `calc(${(95 / (crossingEvents.length + 1)) * alreadyRendered.length}%)`
                   : "",
             }}
           >
